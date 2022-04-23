@@ -1,11 +1,7 @@
 require('dotenv').config()
-
 const { v4: uuidv4 } = require('uuid')
-
 const AccessToken = require('twilio').jwt.AccessToken
-
 const VideoGrant = AccessToken.VideoGrant
-
 const express = require('express')
 const app = express()
 const port = 3000
@@ -13,7 +9,6 @@ const port = 3000
 app.use(express.json())
 
 // Create the twilioClient
-
 const twilioClient = require('twilio')(
   process.env.TWILIO_API_KEY_SID,
   process.env.TWILIO_API_KEY_SECRET,
@@ -53,6 +48,10 @@ const getAccessToken = (roomName) => {
 
   return token.toJwt()
 }
+
+app.get('/', (req, res) => {
+   res.sendFile(__dirname + "/public/index.html")
+})
 
 app.post('/join-room', async (req, res) => {
   if (!req.body || !req.body.roomName) {
