@@ -12,11 +12,17 @@ Meet-App es una aplicación que usa la api de Twilio.
 -   NodeJs
 -   Express
 
+
+## Twilio Hackathon
+**Miguel Ángel Durán** <br /> 
+[@midudev](https://twitter.com/midudev) <br /> 
+[Twitch Midu](https://twitch.tv/midudev)
+
 ## Demo
 
-If you want to see the demo of this proyect deployed, you can visit [Demo of the proyect]()
+If you want to see the demo of this proyect deployed, you can visit [Demo of the proyect](https://video-call-kappa.vercel.app/)
 
-Si tu quieres puedes ver el demo del proyecto ya desplegado, visitame [Demo of the proyect]()
+Si tu quieres puedes ver el demo del proyecto ya desplegado, visitame [Demo of the proyect](https://video-call-kappa.vercel.app/)
 
 ## Installation | Instalación
 
