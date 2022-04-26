@@ -8,6 +8,8 @@ const port = 3000
 
 app.use(express.json())
 app.use(express.static(__dirname + "/public/"));
+app.use(express.static(__dirname + "/public/services/"));
+app.use(express.static(__dirname + "/public/img/"));
 
 // Create the twilioClient
 const twilioClient = require('twilio')(
@@ -52,6 +54,9 @@ const getAccessToken = (roomName) => {
 
 app.get('/', (req, res) => {
    res.sendFile(__dirname + "/public/index.html")
+})
+app.get('/video-call', (req, res) => {
+   res.sendFile(__dirname + "/public/videocall.html")
 })
 
 app.post('/join-room', async (req, res) => {
