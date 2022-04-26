@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VideoCall</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script src="https://sdk.twilio.com/js/video/releases/2.21.1/twilio-video.min.js"></script>
+  </head>
+  <body>
+    <main class="section-border border-primary">
+      <section class="pt-6 pt-md-8 pb-8 mb-md-8">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="row align-items-center">
+                <div class="col-12 col-md">
+                  <!-- Heading -->
+                  <h1 class="display-4 mb-2" id="username"></h1>
+
+                  <!-- Text -->
+                  <p class="fs-lg text-gray-700 mb-md-0" id="room">
+                    My room: <b></b>
+                  </p>
+                </div>
+                <div class="col-auto">
+                  <!-- Buttons -->
+                  <button id="disconect" class="btn btn-primary lift ms-auto">
+                    Disconect
+                  </button>
+                </div>
+              </div>
+              <!-- / .row -->
+
+              <!-- Divider -->
+              <hr class="border-gray-300 my-6 my-md-8" />
+            </div>
+          </div>
+          <!-- / .row -->
+        </div>
+        <!-- / .container -->
+      </section>
+
+      <section class="container">
+        <div class="row">
+          <div class="col-12 col-md-5">
+            <article id="videoContainer"></article>
+            <button class="btn btn-secondary" id="audio">Audio On</button>
+            <button class="btn btn-secondary" id="video">Video On</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="/videocall.js"></script>
+  </body>
+</html>
