@@ -1,7 +1,11 @@
 // @ts-check
 import { response } from './services/getToken.js'
 import { $ } from './services/dom.js'
-import { settingsUser } from './services/settingsUser.js'
+import {
+  settingsUser,
+  turnOnOffAudio,
+  turnOnOffVideo
+} from './services/settingsUser.js'
 
 if (!localStorage.getItem('user') || !localStorage.getItem('settings')) {
   window.location.href = '/'
@@ -11,14 +15,16 @@ const settings = JSON.parse(localStorage.getItem('settings'))
 
 let audioFlag = settings.audio
 let videoFlag = settings.video
-$('#audio').textContent =`${ audioFlag ? 'Audio On' : 'Audio Off' }`
-$('#video').textContent =`${ videoFlag ? 'Video On' : 'Video Off' }`
 
 const username = $('#username')
-
 const roomNameParagraph = $('#room')
 const videoContainer = $('#videoContainer')
 const disconectBtn = $('#disconect')
+const videoNot = $('#videoNotAvailable')
+
+// show placeholder video not available
+if (videoFlag) videoNot.style.display = 'none'
+else videoNot.style.display = 'table'
 
 const user = JSON.parse(localStorage.getItem('user'))
 
@@ -49,7 +55,6 @@ const startRoom = async () => {
     room.participants.forEach(handleConectParticipants)
   }
   room.on('participantConnected', handleConectParticipants)
-  disconectBtn.style.visibility = 'initial'
 
   room.on('participantDisconnected', handleDisconnectedParticipant)
   window.addEventListener('pagehide', () => room.disconnect())
@@ -76,12 +81,22 @@ const handleConectParticipants = (p) => {
   })
 
   p.on('trackPublished', handleTrackPublication)
+
+  $('#alert-container').innerHTML = `<div class="alert alert-info" role="alert">
+  The user ${user.name} is join to the call.
+</div>`
+
+  setTimeout(() => {
+    $('#alert-container').remove()
+  }, 2500)
 }
 
 const handleTrackPublication = (track, p) => {
   function displayTrack(track) {
     const pDiv = document.getElementById(p.identity)
     pDiv.append(track.attach())
+    if (pDiv && pDiv.querySelector('video'))
+      pDiv.querySelector('video').classList.add('container')
   }
 
   if (track.track) {
@@ -92,7 +107,6 @@ const handleTrackPublication = (track, p) => {
 }
 const handleDisconnectedParticipant = (p) => {
   p.removeAllListeners()
-
   const pDiv = document.getElementById(p.identity)
   pDiv.remove()
 }
@@ -100,9 +114,15 @@ const handleDisconnectedParticipant = (p) => {
 disconectBtn.addEventListener('click', () => {
   handleDisconnectedParticipant(room.localParticipant)
   room.disconnect()
+  deleteSettingsUser()
+})
+
+function deleteSettingsUser() {
   localStorage.removeItem('user')
   localStorage.removeItem('settings')
   window.location.href = '/'
-})
+}
 
 startRoom()
+turnOnOffAudio(audioFlag)
+turnOnOffVideo(videoFlag)
