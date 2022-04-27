@@ -8,6 +8,8 @@ form.addEventListener('submit', (evt) => {
   let name = data.get('name')
   let roomName = data.get('roomName')
 
+  let video = !$('#video').checked
+
   localStorage.setItem(
     'user',
     JSON.stringify({
@@ -15,7 +17,7 @@ form.addEventListener('submit', (evt) => {
       roomName
     })
   )
-  localStorage.setItem('settings', JSON.stringify({ audio: true, video: true }))
+  localStorage.setItem('settings', JSON.stringify({ audio: true, video }))
 
   window.location.href = '/video-call'
 })
