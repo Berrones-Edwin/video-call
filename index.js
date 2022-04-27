@@ -8,6 +8,7 @@ const port = 3000
 
 app.use(express.json())
 app.use(express.static(__dirname + "/public/"));
+app.use(express.static(__dirname + "/public/js/"));
 app.use(express.static(__dirname + "/public/services/"));
 app.use(express.static(__dirname + "/public/img/"));
 

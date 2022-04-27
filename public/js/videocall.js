@@ -1,11 +1,11 @@
 // @ts-check
-import { response } from './services/getToken.js'
-import { $ } from './services/dom.js'
+import { response } from '../services/getToken.js'
+import { $ } from '../services/dom.js'
 import {
   settingsUser,
   turnOnOffAudio,
   turnOnOffVideo
-} from './services/settingsUser.js'
+} from '../services/settingsUser.js'
 
 if (!localStorage.getItem('user') || !localStorage.getItem('settings')) {
   window.location.href = '/'

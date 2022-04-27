@@ -1,4 +1,4 @@
-import { $ } from './services/dom.js'
+import { $ } from '../services/dom.js'
 
 const form = $('#roomNameForm')
 
