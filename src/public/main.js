@@ -19,5 +19,5 @@ form.addEventListener('submit', (evt) => {
   )
   localStorage.setItem('settings', JSON.stringify({ audio: true, video }))
 
-  window.location.href = '/video-call'
+  window.location.href = './video-call'
 })
