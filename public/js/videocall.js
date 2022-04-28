@@ -21,6 +21,7 @@ const roomNameParagraph = $('#room')
 const videoContainer = $('#videoContainer')
 const disconectBtn = $('#disconect')
 const videoNot = $('#videoNotAvailable')
+const leaveSession = $('#leaveSession #Understood')
 
 // show placeholder video not available
 if (videoFlag) videoNot.style.display = 'none'
@@ -111,17 +112,21 @@ const handleDisconnectedParticipant = (p) => {
   pDiv.remove()
 }
 
-disconectBtn.addEventListener('click', () => {
-  handleDisconnectedParticipant(room.localParticipant)
-  room.disconnect()
-  deleteSettingsUser()
-})
+// disconectBtn.addEventListener('click', () => {
+  
+// })
 
 function deleteSettingsUser() {
   localStorage.removeItem('user')
   localStorage.removeItem('settings')
   window.location.href = '/'
 }
+
+leaveSession.addEventListener('click', () => {
+  handleDisconnectedParticipant(room.localParticipant)
+  room.disconnect()
+  deleteSettingsUser()
+})
 
 startRoom()
 turnOnOffAudio(audioFlag)
