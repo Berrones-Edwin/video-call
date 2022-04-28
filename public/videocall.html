@@ -12,8 +12,27 @@
       crossorigin="anonymous"
     />
     <script src="https://sdk.twilio.com/js/video/releases/2.21.1/twilio-video.min.js"></script>
+    <style>
+      body {
+        color: #fff;
+        /* position: relative; */
+      }
+      
+      .actions {
+        width: 300px;
+        height: 4rem;
+        position: absolute;
+        top:90%;
+        left: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+
+      }
+    </style>
   </head>
-  <body>
+  <body class="bg-dark">
     <main class="section-border border-primary">
       <section class="pt-6 pt-md-8 pb-8 mb-md-8">
         <div class="container">
@@ -38,8 +57,9 @@
                   <button
                     title="leave the room button"
                     id="disconect"
-                    class="btn btn-danger lift ms-auto"
-                    data-bs-toggle="modal" data-bs-target="#leaveSession"
+                    class="btn btn-lg btn-danger lift ms-auto"
+                    data-bs-toggle="modal"
+                    data-bs-target="#leaveSession"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -72,36 +92,42 @@
       </section>
       <br />
 
-      <section class="container">
-        <button
-          title="toggle audio button"
-          class="btn btn-success"
-          id="audio"
-        ></button>
-        <button title="toggle video button" class="btn btn-success" id="video">
-          Video off
-        </button>
+      <!-- Audio / Video -->
+      <section class="actions d-flex flex-row justify-content-center">
+        <div>
+          <button
+            title="toggle audio button"
+            class="btn btn-success btn-lg"
+            id="audio"
+          ></button>
+          
+          <button
+            title="toggle video button"
+            class="btn btn-success btn-lg"
+            id="video"
+          ></button>
+        </div>
       </section>
-
-      <br />
-      <!-- Container show alerts -->
-      <div class="container" id="alert-container"></div>
       <br />
 
-      <article class="container" id="videoContainer">
+      <article
+        class="container d-flex flex-row justify-content-around"
+        id="videoContainer"
+      >
         <div class="container" id="videoNotAvailable">
           <img
             src="https://cdn.shopify.com/s/files/1/0382/4185/files/video-not-found.png?780"
             alt="video not available"
             title="video not available"
+            width="640"
+            height="480"
           />
         </div>
       </article>
 
-     
       <!-- Modal -->
       <div
-        class="modal fade"
+        class="modal fade bg-dark"
         id="leaveSession"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
@@ -110,9 +136,11 @@
         aria-hidden="true"
       >
         <div class="modal-dialog">
-          <div class="modal-content">
+          <div class="modal-content bg-dark">
             <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel">Are you sure?</h5>
+              <h5 class="modal-title" id="staticBackdropLabel">
+                Are you sure?
+              </h5>
               <button
                 type="button"
                 class="btn-close"
@@ -131,7 +159,9 @@
               >
                 Close
               </button>
-              <button type="button" id="Understood" class="btn btn-primary">Understood</button>
+              <button type="button" id="Understood" class="btn btn-primary">
+                Understood
+              </button>
             </div>
           </div>
         </div>

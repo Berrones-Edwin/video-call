@@ -19,7 +19,6 @@ let videoFlag = settings.video
 const username = $('#username')
 const roomNameParagraph = $('#room')
 const videoContainer = $('#videoContainer')
-const disconectBtn = $('#disconect')
 const videoNot = $('#videoNotAvailable')
 const leaveSession = $('#leaveSession #Understood')
 
@@ -38,6 +37,9 @@ $('#audio').addEventListener('click', () => {
 })
 $('#video').addEventListener('click', () => {
   videoFlag = !videoFlag
+  if (videoContainer.hasChildNodes()) {
+    videoContainer.removeChild(videoContainer.firstElementChild)
+  }
   settingsUser(audioFlag, videoFlag)
 })
 
@@ -52,9 +54,9 @@ const startRoom = async () => {
 
   // render local and remote participants' video and audio
   handleConectParticipants(room.localParticipant)
-  if (room.participants.length > 0) {
-    room.participants.forEach(handleConectParticipants)
-  }
+
+  room.participants.forEach(handleConectParticipants)
+
   room.on('participantConnected', handleConectParticipants)
 
   room.on('participantDisconnected', handleDisconnectedParticipant)
@@ -82,22 +84,12 @@ const handleConectParticipants = (p) => {
   })
 
   p.on('trackPublished', handleTrackPublication)
-
-  $('#alert-container').innerHTML = `<div class="alert alert-info" role="alert">
-  The user ${user.name} is join to the call.
-</div>`
-
-  setTimeout(() => {
-    $('#alert-container').remove()
-  }, 2500)
 }
 
 const handleTrackPublication = (track, p) => {
   function displayTrack(track) {
     const pDiv = document.getElementById(p.identity)
     pDiv.append(track.attach())
-    if (pDiv && pDiv.querySelector('video'))
-      pDiv.querySelector('video').classList.add('container')
   }
 
   if (track.track) {
@@ -109,12 +101,10 @@ const handleTrackPublication = (track, p) => {
 const handleDisconnectedParticipant = (p) => {
   p.removeAllListeners()
   const pDiv = document.getElementById(p.identity)
-  pDiv.remove()
+  if (pDiv) {
+    pDiv.remove()
+  }
 }
-
-// disconectBtn.addEventListener('click', () => {
-  
-// })
 
 function deleteSettingsUser() {
   localStorage.removeItem('user')
