@@ -56,6 +56,9 @@ const getAccessToken = (roomName) => {
 app.get('/', (req, res) => {
    res.sendFile(__dirname + "/public/index.html")
 })
+app.get('/preview', (req, res) => {
+   res.sendFile(__dirname + "/public/preview.html")
+})
 app.get('/video-call', (req, res) => {
    res.sendFile(__dirname + "/public/videocall.html")
 })
