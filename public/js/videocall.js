@@ -20,16 +20,18 @@ const username = $('#username')
 const roomNameParagraph = $('#room')
 const videoContainer = $('#videoContainer')
 const videoNot = $('#videoNotAvailable')
+const btnInvite = $('#invite')
+const alertContainer = $('#alert')
 const leaveSession = $('#leaveSession #Understood')
 
 // show placeholder video not available
 if (videoFlag) videoNot.style.display = 'none'
-else videoNot.style.display = 'table'
+else videoNot.style.display = 'block'
 
 const user = JSON.parse(localStorage.getItem('user'))
 
 username.textContent = `Welcome ${user.name}`
-roomNameParagraph.querySelector('b').textContent = `${user.roomName}`
+roomNameParagraph.textContent = `Room Name: ${user.roomName}`
 
 $('#audio').addEventListener('click', () => {
   audioFlag = !audioFlag
@@ -116,6 +118,25 @@ leaveSession.addEventListener('click', () => {
   handleDisconnectedParticipant(room.localParticipant)
   room.disconnect()
   deleteSettingsUser()
+})
+
+btnInvite.addEventListener('click', () => {
+  navigator.clipboard
+    .writeText(user.roomName)
+    .then(() => {
+      console.log('here')
+      alertContainer.innerHTML  = `<div class="alert alert-primary" role="alert">
+    The room name was copied! Send the code to others users.
+  </div>`
+    })
+    .catch(() => {
+      alertContainer.innerHTML  = `<div class="alert alert-dagner" role="alert">
+    The room name was not copied! Try it again.
+  </div>`
+    })
+    setTimeout(()=>{
+      if(alertContainer) alertContainer.removeChild()
+    },1500)
 })
 
 startRoom()
