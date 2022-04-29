@@ -17,80 +17,101 @@
         color: #fff;
         /* position: relative; */
       }
-      
+
       .actions {
         width: 300px;
         height: 4rem;
         position: absolute;
-        top:90%;
+        top: 90%;
         left: 40%;
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 5px;
-
       }
     </style>
   </head>
   <body class="bg-dark">
     <main class="section-border border-primary">
-      <section class="pt-6 pt-md-8 pb-8 mb-md-8">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <div class="row align-items-center">
-                <div class="col-12 col-md">
-                  <!-- Heading -->
-                  <h1
-                    title="show the username heading"
-                    class="display-4 mb-2"
-                    id="username"
-                  ></h1>
-
-                  <!-- Text -->
-                  <p class="fs-lg text-gray-700 mb-md-0" id="room">
-                    My room: <b></b>
-                  </p>
-                </div>
-                <div class="col-auto">
-                  <!-- Buttons -->
-                  <button
-                    title="leave the room button"
-                    id="disconect"
-                    class="btn btn-lg btn-danger lift ms-auto"
-                    data-bs-toggle="modal"
-                    data-bs-target="#leaveSession"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      class="bi bi-box-arrow-right"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"
-                      />
-                      <path
-                        fill-rule="evenodd"
-                        d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              <!-- / .row -->
-
-              <!-- Divider -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" id="room"></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  id="username"
+                  href="#"
+                ></a>
+              </li>
+            </ul>
+            <div class="d-flex">
+              <button
+                title="Invite new participants"
+                id="invite"
+                class="btn btn-lg btn-warning lift ms-auto mr-2"
+                style="margin-right: 1rem"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-person-plus-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"
+                  />
+                </svg>
+                Invite
+              </button>
+              <button
+                title="leave the room button"
+                id="disconect"
+                class="btn btn-lg btn-danger lift ms-auto"
+                data-bs-toggle="modal"
+                data-bs-target="#leaveSession"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-box-arrow-right"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"
+                  />
+                </svg>
+              </button>
             </div>
           </div>
-          <!-- / .row -->
         </div>
-        <!-- / .container -->
-      </section>
-      <br />
+      </nav>
 
       <!-- Audio / Video -->
       <section class="actions d-flex flex-row justify-content-center">
@@ -100,7 +121,7 @@
             class="btn btn-success btn-lg"
             id="audio"
           ></button>
-          
+
           <button
             title="toggle video button"
             class="btn btn-success btn-lg"
@@ -114,7 +135,7 @@
         class="container d-flex flex-row justify-content-around"
         id="videoContainer"
       >
-        <div class="container" id="videoNotAvailable">
+        <div id="videoNotAvailable">
           <img
             src="https://cdn.shopify.com/s/files/1/0382/4185/files/video-not-found.png?780"
             alt="video not available"
