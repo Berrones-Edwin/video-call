@@ -124,19 +124,19 @@ btnInvite.addEventListener('click', () => {
   navigator.clipboard
     .writeText(user.roomName)
     .then(() => {
-      console.log('here')
-      alertContainer.innerHTML  = `<div class="alert alert-primary" role="alert">
+      alertContainer.innerHTML = `<div class="alert alert-primary" role="alert">
     The room name was copied! Send the code to others users.
   </div>`
     })
     .catch(() => {
-      alertContainer.innerHTML  = `<div class="alert alert-dagner" role="alert">
+      alertContainer.innerHTML = `<div class="alert alert-dagner" role="alert">
     The room name was not copied! Try it again.
   </div>`
     })
-    setTimeout(()=>{
-      if(alertContainer) alertContainer.removeChild()
-    },1500)
+  setTimeout(() => {
+    if (alertContainer)
+      alertContainer.removeChild(alertContainer.firstElementChild)
+  }, 1500)
 })
 
 startRoom()
