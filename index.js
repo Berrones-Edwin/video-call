@@ -7,10 +7,10 @@ const app = express()
 const port = 3000
 
 app.use(express.json())
-app.use(express.static(__dirname + "/public/"));
-app.use(express.static(__dirname + "/public/js/"));
-app.use(express.static(__dirname + "/public/services/"));
-app.use(express.static(__dirname + "/public/img/"));
+app.use(express.static(__dirname + '/public/'))
+app.use(express.static(__dirname + '/public/js/'))
+app.use(express.static(__dirname + '/public/services/'))
+app.use(express.static(__dirname + '/public/img/'))
 
 // Create the twilioClient
 const twilioClient = require('twilio')(
@@ -54,13 +54,16 @@ const getAccessToken = (roomName) => {
 }
 
 app.get('/', (req, res) => {
-   res.sendFile(__dirname + "/public/index.html")
+  res.sendFile(__dirname + '/public/index.html')
+})
+app.get('/form', (req, res) => {
+  res.sendFile(__dirname + '/public/form.html')
 })
 app.get('/preview', (req, res) => {
-   res.sendFile(__dirname + "/public/preview.html")
+  res.sendFile(__dirname + '/public/preview.html')
 })
 app.get('/video-call', (req, res) => {
-   res.sendFile(__dirname + "/public/videocall.html")
+  res.sendFile(__dirname + '/public/videocall.html')
 })
 
 app.post('/join-room', async (req, res) => {
